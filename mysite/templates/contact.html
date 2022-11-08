@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .alert-success {
+        background-color: green;
+        color: white;
+    }
+</style>
+
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url(/static/img/contact-bg.jpg);">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>Contact</h1>
+        <div class="servicios-head">
+          <span>
+            Student's Name
+          </span>
+          <span>/</span>
+          <span>
+            Contact
+          </span>
+          {% comment %} 
+          <span>/</span>
+          {% endcomment %}
+        </div>
+        <p class="mt-4">
+          I hope you are having fun looking at this demo project. Please, feel free to contact me using the form below.
+        </p>     
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container mb-4">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact Me</h2>
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact me.</p>
+    <div class="row">
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="/contact" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="id_name" name="name" class="form-control">
+                            <label for="name" class="">Your name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="id_email" name="email" class="form-control">
+                            <label for="email" class="">Your email</label>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <textarea type="text" id="id_message" name="message" rows="4" class="form-control md-textarea"></textarea>
+                            <label for="message">Your message</label>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+            </div>
+            <div class="status"></div>
+        </div>
+            {% if messages %} {% for message in messages %}
+            <div id="toast-alert" style="margin-top: 25px;">
+                <div class="toast-header alert-{{ message.tags }} d-flex justify-content-between">
+                    <strong>{{ message|safe }}</strong>
+                </div>
+            </div>
+            {% endfor %} {% endif %}
+    </div>
+</section>
+{% endblock content %}
