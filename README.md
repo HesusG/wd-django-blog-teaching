@@ -25,13 +25,31 @@ A working backend should also be implemented in order for the site to store blog
 
 In order to successfully deliver this project, please consider the following:
 
-- Implement a responsive framework such as bootstrap.
+**<details><summary>Implement a responsive framework such as bootstrap.</summary>**
 
-- Generate all the necessary templates to implement all the views.
+<p>You can decide to use any responsive framework you might like. Bootstrap is recommended as is well documented, but feel free to try other frameworks like Tailwind or Skeleton</p>
+</details>
 
-- Route the appropriate views to their url patterns.
+**<details><summary>Generate all the necessary templates to implement all the views.</summary>**
 
-- Generate the required models with their appropriate fields types.
+<p>Before actually creating the templates, don't forget to configure your project settings to look for templates in the `templates` directory. In addition, you might want to specify a folder for static files. This will enable your website to properly render images and css in your templates</p></details>
+
+**<details><summary>Route the appropriate views to their url patterns.</summary>**
+
+<p>Inside the `app` folder, route the necessary URLS to their respective views. Your views should point to their specific html templates. </p>
+</details>
+
+**<details><summary>Generate the required models with their appropriate fields types.</summary>**
+
+<p>
+Implement at least the fields included in the provided ER Diagram. Map each table to their respective model.
+Select the appropriate field types and on delete behavior for any model that might need so.
+</p>
+
+<p>Don't forget to `makemigrations` after any changes performed in your models, before running your server</p>
+</details>
+
+<br>
 
 ## Starter Code
 
