@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if article.image %}
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url({{article.image.url}});">
+{% else %}
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url(/static/img/blog-bg.jpg);">
+{% endif %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>{{article.title}}</h1>
+        <div class="servicios-head">
+          <span>
+            Vanguardia
+          </span>
+          <span>/</span>
+          <span>
+            Blogs
+          </span>
+          <span>
+            /
+          </span>
+          <span>
+            {{article.title}}
+          </span> 
+        </div>
+        <div><small>Posted on {{article.created_at}}</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="blogs container">
+    <div class="row text-center">
+      <div class="col-12 mb-3">
+        <div class="card dark">
+          <div class="card-body">
+            <p class="card-text px-5">{{article.body|safe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock content %}

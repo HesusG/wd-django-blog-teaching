@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="bg-cover hero-section" style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url(/static/img/blog-bg.jpg);">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>Blogs</h1>
+        <div class="servicios-head">
+          <span>
+            Student's Name
+          </span>
+          <span>/</span>
+          <span>
+            Blogs
+          </span>
+          {% comment %} <span>
+            /
+          </span>
+          {% endcomment %}
+        </div>
+        <p class="mt-4">
+          This is my first blog. You can take a look at some of what I have written below. Click on the View button to display more information about each entry.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="blogs container">
+    <div class="row text-center">
+    {% for article in articles %}
+      <div class="col-12 mb-3">
+        <div class="card dark">
+        {% comment %} {% if article.image %}
+          <img class="card-img-top" src="{{ article.image.url }}" alt="Card image cap">
+        {% else %}
+        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">       
+        {% endif %} {% endcomment %}
+          <div class="card-body">
+            <h5 class="card-title">{{article.title}}</h5>
+            <p class="card-text px-5">{{article.body|safe|slice:150}}</p>
+            <div><small>Posted on {{article.created_at}}</small></div>
+            <a href="{% url 'blog-detail' article.pk %}" class="btn btn-brand mt-4">View</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+</section>
+{% endblock content %}
