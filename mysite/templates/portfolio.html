@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url(/static/img/cover_1.jpg);">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>Portfolio</h1>
+        <div class="servicios-head">
+          <span>
+            Student's Name
+          </span>
+          <span>/</span>
+          <span>
+            Portfolio
+          </span>
+          {% comment %} <span>
+            /
+          </span>
+          <span>
+            Ingeniería
+          </span> {% endcomment %}
+        </div>
+        <p class="mt-4">
+          This is the portfolio section. Here you can browse some of the other projects I have completed at Kibo. Projects are categorized into their own categories. 
+          To get more details about each project click on the view project button.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="categories container">
+    <div class=" d-flex gap-3 justify-content-center align-items-center">
+    <div><h3>Categories:</h3></div>    
+    {% for category in categories %}
+        <form action="/portfolio" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="category" value="{{category.slug}}">
+        <button type="submit" class="border px-3 py-2" style="cursor: pointer">  {{category.name}} </button>
+        </form>
+    {% endfor %}  
+    </div>
+</section>
+<section class="categories container">
+    <div class="row text-center">
+    {% for portfolio in portfolios %}
+      <div id="{{portfolio.category.slug}}" class="col-lg-6 col-md-6 mb-3">
+        <div class="card dark">
+        {% if portfolio.image %}
+          <img class="card-img-top" src="{{ portfolio.image.url }}" alt="Card image cap">
+        {% else %}
+        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+        
+        {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{portfolio.name }}</h5>
+            {% comment %} <p class="card-text px-5">{{portfolio.body|safe|slice:100}}</p> {% endcomment %}
+
+            <div><small>Posted in {{portfolio.category.name}}</small></div>
+            <a href="{% url 'portfolio-detail' portfolio.pk %}" class="btn btn-brand mt-4">View</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+</section>
+{% endblock content %}

@@ -26,3 +26,21 @@ def contact(request):
         return redirect('contact')
     else:
         return render(request, 'contact.html')
+
+def portfolio(request):
+    if request.method == 'POST':
+        context = {}
+        category = request.POST.get('category')
+        context['portfolios'] = Portfolio.objects.filter(category__slug=category)
+        context['categories'] = Category.objects.all()
+        return render(request, 'portfolio.html', context)
+    else:
+        context = {}
+        context['categories'] = Category.objects.all()
+        context['portfolios'] = Portfolio.objects.all()
+        return render(request, 'portfolio.html', context)
+        
+def portfolioDetail(request, pk):
+    context = {}
+    context['portfolio'] = Portfolio.objects.get(id=pk)
+    return render(request, 'portfolio-detail.html', context)

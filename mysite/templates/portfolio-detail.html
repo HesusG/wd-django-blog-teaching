@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if portfolio.image %}
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url({{portfolio.image.url}});">
+{% else %}
+<section class="bg-cover hero-section"
+  style="background-image: linear-gradient(rgba(14, 0, 0, 0.76), rgba(36, 35, 35, 0.5)), url(/static/img/blog-bg.jpg);">
+{% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1>{{portfolio.name}}</h1>
+        <div class="servicios-head">
+          <span>
+            Hesus
+          </span>
+          <span>/</span>
+          <span>
+            Portfolio
+          </span>
+          <span>
+            /
+          </span>
+          <span>
+            {{portfolio.name}}
+          </span> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="blogs container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <div class="card dark">
+          <div class="card-body">
+            <p class="card-text px-5">{{portfolio.body|safe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock content %}
